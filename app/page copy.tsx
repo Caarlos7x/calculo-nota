@@ -33,7 +33,8 @@ export default function Home() {
     const psub = parseFloat(Psub) || 0;
 
     const mac = (ac1 + ac2 + ac3) / 3;
-    const arredondado = Math.floor(mac) + Math.floor((mac - Math.floor(mac)) * 100) / 100;
+    const arredondado =
+      Math.floor(mac) + Math.floor((mac - Math.floor(mac)) * 100) / 100;
     setMAC(arredondado);
 
     const esperado = 6 - arredondado;
@@ -97,57 +98,54 @@ export default function Home() {
   };
 
   return (
-    <>
-      {/* Modal fora da main */}
+    <main>
       <ResultadoModal
         mensagem={mensagem}
         aberto={mostrarModal}
         onFechar={resetarFormulario}
       />
 
-      <main>
-        <aside>
-          <h4>MAC:</h4>
-          <div id="MAC">{MAC.toFixed(2)}</div>
-        </aside>
+      <aside>
+        <h4>MAC:</h4>
+        <div id="MAC">{MAC.toFixed(2)}</div>
+      </aside>
 
-        {mostrarNotaFinal && notaFinal !== null && (
-          <aside id="boxnotaFinal">
-            <h4>NOTA FINAL:</h4>
-            <div
-              id="notaFinal"
-              style={{
-                color: notaFinal! >= 6 ? 'var(--success)' : 'var(--danger)',
-              }}
-            >
-              {notaFinal.toFixed(2)}
-            </div>
-          </aside>
-        )}
-
-        <div className="row">
-          <NotaInput label="AC1" value={AC1} onChange={(e) => setAC1(e.target.value)} />
-          <NotaInput label="AC2" value={AC2} onChange={(e) => setAC2(e.target.value)} />
-          <NotaInput label="AC3" value={AC3} onChange={(e) => setAC3(e.target.value)} />
-        </div>
-
-        {(AC1 || AC2 || AC3) && (
-          <div>
-            <p>
-              Nota mínima esperada para a Prova: <br />
-              <span style={{ color: parseFloat(P1) < esperadoProva ? 'var(--danger)' : 'inherit' }}>
-                {esperadoProva.toFixed(2)}
-              </span>
-            </p>
+      {mostrarNotaFinal && notaFinal !== null && (
+        <aside id="boxnotaFinal">
+          <h4>NOTA FINAL:</h4>
+          <div
+            id="notaFinal"
+            style={{
+              color: notaFinal! >= 6 ? 'var(--success)' : 'var(--danger)',
+            }}
+          >
+            {notaFinal.toFixed(2)}
           </div>
-        )}
+        </aside>
+      )}
 
-        <NotaInput label="PROVA" value={P1} onChange={(e) => setP1(e.target.value)} />
+      <div className="row">
+        <NotaInput label="AC1" value={AC1} onChange={(e) => setAC1(e.target.value)} />
+        <NotaInput label="AC2" value={AC2} onChange={(e) => setAC2(e.target.value)} />
+        <NotaInput label="AC3" value={AC3} onChange={(e) => setAC3(e.target.value)} />
+      </div>
 
-        {mostrarPsub && (
-          <NotaInput label="PROVA SUB" value={Psub} onChange={(e) => setPsub(e.target.value)} />
-        )}
-      </main>
-    </>
+      {(AC1 || AC2 || AC3) && (
+        <div>
+          <p>
+            Nota mínima esperada para a Prova: <br />
+            <span style={{ color: parseFloat(P1) < esperadoProva ? 'var(--danger)' : 'inherit' }}>
+              {esperadoProva.toFixed(2)}
+            </span>
+          </p>
+        </div>
+      )}
+
+      <NotaInput label="PROVA" value={P1} onChange={(e) => setP1(e.target.value)} />
+
+      {mostrarPsub && (
+        <NotaInput label="PROVA SUB" value={Psub} onChange={(e) => setPsub(e.target.value)} />
+      )}
+    </main>
   );
 }
