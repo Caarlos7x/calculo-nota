@@ -83,7 +83,6 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Só exibe se algum AC for preenchido */}
       {(AC1 > 0 || AC2 > 0 || AC3 > 0) && (
         <div>
           <p>
