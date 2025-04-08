@@ -83,14 +83,17 @@ export default function Home() {
         ))}
       </div>
 
-      <div>
-        <p>
-          Nota mínima esperada para a Prova: <br />
-          <span style={{ color: P1 < esperadoProva ? 'var(--danger)' : 'inherit' }}>
-            {esperadoProva.toFixed(2)}
-          </span>
-        </p>
-      </div>
+      {/* Só exibe se algum AC for preenchido */}
+      {(AC1 > 0 || AC2 > 0 || AC3 > 0) && (
+        <div>
+          <p>
+            Nota mínima esperada para a Prova: <br />
+            <span style={{ color: P1 < esperadoProva ? 'var(--danger)' : 'inherit' }}>
+              {esperadoProva.toFixed(2)}
+            </span>
+          </p>
+        </div>
+      )}
 
       <div id="boxP1">
         <h4>PROVA:</h4>
